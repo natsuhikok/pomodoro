@@ -1,15 +1,25 @@
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
+const {app, BrowserWindow} = require('electron');
 
 const path = require('path')
 const url = require('url')
 
+
+// reload electron or window when the source files are changed. (only NODE_ENV=DEV)
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, '..', 'node_modules', '.bin', 'electron')
+});
+console.log(process.env.NODE_ENV);
+console.log('reloaded..');
+console.log('xxx');
+console.log('xxx');
+console.log('xxx');
+console.log('xxx');
+console.log('xxx');
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
 
 function createWindow () {
   // Create the browser window.

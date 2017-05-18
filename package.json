@@ -7,7 +7,7 @@
     "buildOptions": "--out=release --electron-version=1.6.2 --overwrite"
   },
   "scripts": {
-    "start": "electron $npm_package_config_appDir",
+    "start": "NODE_ENV=DEV electron $npm_package_config_appDir",
     "build": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions"
   },
   "keywords": [
@@ -15,6 +15,7 @@
   ],
   "devDependencies": {
     "electron": "1.6.2",
-    "electron-packager": "^8.7.0"
+    "electron-packager": "^8.7.0",
+    "electron-reload": "^1.1.0"
   }
 }
