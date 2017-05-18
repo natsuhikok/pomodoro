@@ -7,14 +7,29 @@
     "buildOptions": "--out=release --electron-version=1.6.2 --overwrite"
   },
   "scripts": {
-    "start": "NODE_ENV=DEV electron $npm_package_config_appDir",
+    "build:webpack": "webpack -p",
+    "start": "electron $npm_package_config_appDir",
     "build": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions"
   },
   "keywords": [
     "Electron"
   ],
-  "devDependencies": {
+  "dependencies": {
+    "react": "^15.4.2",
     "electron": "1.6.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "webpack": "^2.3.2",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
     "electron-packager": "^8.7.0",
     "electron-reload": "^1.1.0"
   }
