@@ -10,16 +10,16 @@
   "scripts": {
     "build:webpack": "webpack -p",
     "build:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty",
-    "build:packageJson": "gulp create:packageJson",
+    "create:packageJson": "gulp create:packageJson",
     "release:osx": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions",
     "watch:webpack": "webpack --watch",
     "watch:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty --watch",
     "server": "gulp server",
-    "dev:build": "npm-run-all -p clean build:*",
+    "dev:build": "npm-run-all -s clean build:* create:packageJson",
     "dev:watch": "npm-run-all -p watch:* server",
     "dev": "npm-run-all -s dev:build dev:watch",
     "start": "npm-run-all dev",
-    "build": "npm-run-all clean build:* release:osx",
+    "build": "npm-run-all -s clean build:* create:packageJson release:osx",
     "clean": "rimraf $npm_package_config_appDir"
   },
   "keywords": [
