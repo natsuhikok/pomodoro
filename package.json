@@ -14,10 +14,13 @@
     "release:osx": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions",
     "watch:webpack": "webpack --watch",
     "watch:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty --watch",
-    "preBuild": "npm-run-all -p build:packageJson build:template",
     "server": "gulp server",
-    "start": "npm-run-all -p preBuild watch:* server",
-    "build": "npm-run-all build:* release:osx"
+    "dev:build": "npm-run-all -p clean build:*",
+    "dev:watch": "npm-run-all -p watch:* server",
+    "dev": "npm-run-all -s dev:build dev:watch",
+    "start": "npm-run-all dev",
+    "build": "npm-run-all clean build:* release:osx",
+    "clean": "rimraf $npm_package_config_appDir"
   },
   "keywords": [
     "Electron"
@@ -44,6 +47,7 @@
     "npm-run-all": "^4.0.2",
     "pug": "^2.0.0-rc.1",
     "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^2.6.1",
     "webpack": "^2.3.2"
   }
 }
