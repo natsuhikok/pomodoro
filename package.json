@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build:webpack": "webpack -p",
+    "build:packageJson": "copy src/**/package.json $npm_package_config_appDir",
     "release:osx": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions",
     "watch:webpack": "webpack --watch",
     "server": "gulp server",
@@ -27,6 +28,7 @@
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
+    "copy": "^0.3.0",
     "electron-connect": "^0.6.1",
     "electron-packager": "^8.7.0",
     "eslint": "^3.19.0",
