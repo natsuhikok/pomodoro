@@ -10,7 +10,7 @@
   "scripts": {
     "build:webpack": "webpack -p",
     "build:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty",
-    "build:packageJson": "copy src/**/package.json $npm_package_config_appDir",
+    "build:packageJson": "gulp create:packageJson",
     "release:osx": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions",
     "watch:webpack": "webpack --watch",
     "watch:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty --watch",
