@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: {
     main: './src/main.js',
+    'renderer/index': './src/renderer/index.jsx',
   },
   output: {
     path: path.join(__dirname, 'app'),
