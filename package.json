@@ -8,8 +8,11 @@
   },
   "scripts": {
     "build:webpack": "webpack -p",
-    "start": "gulp server",
-    "build": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions"
+    "release:osx": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions",
+    "watch:webpack": "webpack --watch",
+    "server": "gulp server",
+    "start": "npm-run-all -p watch:* server",
+    "build": "npm-run-all build:* release:osx"
   },
   "keywords": [
     "Electron"
@@ -32,6 +35,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "gulp": "^3.9.1",
+    "npm-run-all": "^4.0.2",
     "webpack": "^2.3.2"
   }
 }
