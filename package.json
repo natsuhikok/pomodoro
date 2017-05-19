@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "main.js",
   "config": {
-    "appDir": "./app",
-    "rendererDir": "./app/renderer",
+    "appDir": "./dist",
+    "rendererDir": "./dist/renderer",
     "buildOptions": "--out=release --electron-version=1.6.2 --overwrite"
   },
   "scripts": {

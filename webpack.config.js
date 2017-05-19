@@ -6,7 +6,7 @@ module.exports = {
     'renderer/index': './src/renderer/index.jsx',
   },
   output: {
-    path: path.join(__dirname, 'app'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
   },
   resolve: {
