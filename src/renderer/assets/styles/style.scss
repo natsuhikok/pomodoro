@@ -1,0 +1,23 @@
+/*-----------------------------------------------/
+ THIS IS COMPILED FROM SASS.
+ RECOMMENDED NOT TO EDIT COMPILED CSS FILE
+/-----------------------------------------------*/
+// ファイル構成
+// rest:
+  @import "./node_modules/normalize.css/normalize";
+
+// variables:グルーバルな変数定義
+  @import "variables";
+
+// タグに直接当てるスタイルと汎用クラス(最小限に)
+  @import "common";
+
+// modules:
+// * extends-class/ mixin
+  @import "modules";
+
+// componets:
+  // @import "components/button";
+
+// layouts:
+  @import "layouts";

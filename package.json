@@ -8,6 +8,8 @@
     "buildOptions": "--out=release --electron-version=1.6.2 --overwrite"
   },
   "scripts": {
+    "build:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --output-style compressed",
+    "watch:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --source-map-embed --watch",
     "build:webpack": "webpack -p",
     "build:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty",
     "create:packageJson": "gulp create:packageJson",
@@ -26,8 +28,9 @@
     "Electron"
   ],
   "dependencies": {
-    "react": "^15.4.2",
     "electron": "1.6.2",
+    "normalize.css": "^7.0.0",
+    "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
@@ -44,6 +47,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "gulp": "^3.9.1",
+    "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "pug": "^2.0.0-rc.1",
     "pug-cli": "^1.0.0-alpha6",
