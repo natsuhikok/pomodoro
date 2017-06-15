@@ -4,8 +4,9 @@ const fs = require('fs');
 
 gulp.task('server', () => {
   electron.start();
-  gulp.watch('dist/main.js', electron.restart);
-  gulp.watch(['dist/renderer/**/*'], electron.reload);
+  gulp.watch(['dist/main.js', 'dist/renderer/**/*'], electron.restart);
+  // cant restart when it restart and reload in same time.
+  // gulp.watch(['dist/renderer/**/*'], electron.reload);
 });
 
 gulp.task('create:packageJson', () => {
