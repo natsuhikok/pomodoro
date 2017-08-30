@@ -2,27 +2,22 @@
   "name": "electron-starter",
   "version": "1.0.0",
   "main": "main.js",
-  "config": {
-    "appDir": "./dist",
-    "rendererDir": "./dist/renderer",
-    "buildOptions": "--out=release --electron-version=1.6.2 --overwrite"
-  },
   "scripts": {
     "build:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --output-style compressed",
     "watch:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --source-map-embed --watch",
     "build:webpack": "webpack -p",
-    "build:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty",
+    "build:template": "pug src/renderer/**.pug --out ./dist/renderer --pretty",
     "create:packageJson": "gulp create:packageJson",
-    "release:osx": "electron-packager $npm_package_config_appDir $npm_package_config_buildOptions",
+    "release:osx": "electron-packager ./dist --out=release --electron-version=1.6.2 --overwrite",
     "watch:webpack": "webpack --watch",
-    "watch:template": "pug src/renderer/**.pug --out $npm_package_config_rendererDir --pretty --watch",
+    "watch:template": "pug src/renderer/**.pug --out ./dist/renderer --pretty --watch",
     "server": "gulp server",
     "dev:build": "npm-run-all -s clean build:* create:packageJson",
     "dev:watch": "npm-run-all -p watch:* server",
     "dev": "npm-run-all -s dev:build dev:watch",
     "start": "npm-run-all dev",
     "build": "npm-run-all -s clean build:* create:packageJson release:osx",
-    "clean": "rimraf $npm_package_config_appDir"
+    "clean": "rimraf ./dist"
   },
   "keywords": [
     "Electron"
