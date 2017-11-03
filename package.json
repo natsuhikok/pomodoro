@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
+    "rebuild": "electron-rebuild",
     "build:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --output-style compressed",
     "watch:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --source-map-embed --watch",
     "build:webpack": "webpack -p",
@@ -36,6 +37,7 @@
     "copy": "^0.3.0",
     "electron-connect": "^0.6.1",
     "electron-packager": "^8.7.0",
+    "electron-rebuild": "^1.6.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
