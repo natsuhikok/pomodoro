@@ -1,27 +1,20 @@
 import { combineReducers } from 'redux';
 
-const todo = (state, action) => {
+const initialStates = {
+  timer: {
+    count: 0,
+  },
+};
+
+const timer = (state = initialStates.timer, action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'UPDATE_COUNT':
       return {
-        id: action.id,
-        text: action.text,
+        count: action.count,
       };
     default:
       return state;
   }
 };
 
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action),
-      ];
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({ todos });
+export default combineReducers({ timer });

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 let mainWindow = null;
 
@@ -11,7 +11,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${__dirname}/renderer/index.html`);
 
   // Open the DevTools if you want.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -35,4 +35,15 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+// ******************************************
+// IPC
+// ******************************************
+ipcMain.on('START_TIMER', (e) => {
+  let count = 0;
+  setInterval(() => {
+    e.sender.send('UPDATE_COUNT', count);
+    count += 1;
+  }, 1000);
 });

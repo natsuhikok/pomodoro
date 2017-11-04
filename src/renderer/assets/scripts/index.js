@@ -2,11 +2,18 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { ipcRenderer } from 'electron';
 import reducers from './reducers';
-import App from './App';
+import App from './components/App';
+import { updateCount } from './actions';
 
 const appRoot = window.document.getElementById('App');
 const store = createStore(reducers);
+
+// update Count
+ipcRenderer.on('UPDATE_COUNT', (e, count) => {
+  store.dispatch(updateCount(count));
+});
 
 // render react dom
 render(
