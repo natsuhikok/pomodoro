@@ -44,6 +44,7 @@ const timer = {
   status: 'STOP',
   countInterval: null,
   count: 0,
+  end: 10,
 };
 
 const sendStatus = (e, STATUS) => {
@@ -52,8 +53,12 @@ const sendStatus = (e, STATUS) => {
 };
 
 ipcMain.on('START_TIMER', (e) => {
+  clearInterval(timer.countInterval);
   sendStatus(e, 'RUN');
   timer.countInterval = setInterval(() => {
+    if (timer.count >= timer.end) {
+      sendStatus(e, 'OVER');
+    }
     timer.count += 1;
     e.sender.send('UPDATE_COUNT', timer.count);
   }, 1000);
