@@ -41,12 +41,14 @@ app.on('activate', () => {
 // IPC
 // ******************************************
 const timer = {
-  status: 'stop',
+  status: 'STOP',
   countInterval: null,
   count: 0,
 };
 
 ipcMain.on('START_TIMER', (e) => {
+  timer.status = 'RUN';
+  e.sender.send('UPDATE_STATUS', timer.status);
   timer.countInterval = setInterval(() => {
     timer.count += 1;
     e.sender.send('UPDATE_COUNT', timer.count);
@@ -54,6 +56,8 @@ ipcMain.on('START_TIMER', (e) => {
 });
 
 ipcMain.on('RESET_TIMER', (e) => {
+  timer.status = 'STOP';
+  e.sender.send('UPDATE_STATUS', timer.status);
   clearInterval(timer.countInterval);
   timer.count = 0;
   e.sender.send('UPDATE_COUNT', timer.count);
