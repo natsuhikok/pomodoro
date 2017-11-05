@@ -56,7 +56,10 @@ ipcMain.on('START_TIMER', (e) => {
   clearInterval(timer.countInterval);
   sendStatus(e, 'RUN');
   timer.countInterval = setInterval(() => {
-    if (timer.count >= timer.end) {
+    if (
+      timer.count >= timer.end
+      && timer.status !== 'OVER'
+    ) {
       sendStatus(e, 'OVER');
     }
     timer.count += 1;

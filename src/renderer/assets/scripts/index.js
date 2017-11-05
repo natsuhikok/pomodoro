@@ -17,6 +17,10 @@ ipcRenderer.on('UPDATE_COUNT', (e, count) => {
 
 // update status
 ipcRenderer.on('UPDATE_STATUS', (e, status) => {
+  if (status === 'OVER') {
+    const notify = new window.Notification('pomodoro up');
+    setTimeout(notify.close.bind(notify), 10000);
+  }
   store.dispatch(updateStatus(status));
 });
 
