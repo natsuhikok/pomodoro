@@ -40,10 +40,21 @@ app.on('activate', () => {
 // ******************************************
 // IPC
 // ******************************************
+const timer = {
+  status: 'stop',
+  countInterval: null,
+  count: 0,
+};
+
 ipcMain.on('START_TIMER', (e) => {
-  let count = 0;
-  setInterval(() => {
-    e.sender.send('UPDATE_COUNT', count);
-    count += 1;
+  timer.countInterval = setInterval(() => {
+    timer.count += 1;
+    e.sender.send('UPDATE_COUNT', timer.count);
   }, 1000);
+});
+
+ipcMain.on('RESET_TIMER', (e) => {
+  clearInterval(timer.countInterval);
+  timer.count = 0;
+  e.sender.send('UPDATE_COUNT', timer.count);
 });
