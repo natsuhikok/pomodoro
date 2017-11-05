@@ -11,10 +11,17 @@ const Timer = ({ dispatch, timer }) => {
     e.preventDefault();
     ipcRenderer.send('RESET_TIMER');
   };
+  const btnPouse = (e) => {
+    e.preventDefault();
+    ipcRenderer.send('POUSE_TIMER');
+  };
   return (
     <div>
       <button onClick={e => btnStart(e)}>
         start
+      </button>
+      <button onClick={e => btnPouse(e)}>
+        pouse
       </button>
       <button onClick={e => btnReset(e)}>
         reset

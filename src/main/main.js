@@ -46,18 +46,26 @@ const timer = {
   count: 0,
 };
 
-ipcMain.on('START_TIMER', (e) => {
-  timer.status = 'RUN';
+const sendStatus = (e, STATUS) => {
+  timer.status = STATUS;
   e.sender.send('UPDATE_STATUS', timer.status);
+};
+
+ipcMain.on('START_TIMER', (e) => {
+  sendStatus(e, 'RUN');
   timer.countInterval = setInterval(() => {
     timer.count += 1;
     e.sender.send('UPDATE_COUNT', timer.count);
   }, 1000);
 });
 
+ipcMain.on('POUSE_TIMER', (e) => {
+  sendStatus(e, 'POUSE');
+  clearInterval(timer.countInterval);
+});
+
 ipcMain.on('RESET_TIMER', (e) => {
-  timer.status = 'STOP';
-  e.sender.send('UPDATE_STATUS', timer.status);
+  sendStatus(e, 'STOP');
   clearInterval(timer.countInterval);
   timer.count = 0;
   e.sender.send('UPDATE_COUNT', timer.count);
