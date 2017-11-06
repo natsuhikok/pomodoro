@@ -92,6 +92,12 @@ ipcMain.on('RESET_TIMER', (e) => {
   e.sender.send('ADD_LOG', {
     id: `${dt.toFormat('YYYYMMDDHH24MISS')}${dt.getMilliseconds()}`,
     count: endCount,
-    timestamp: dt.toFormat('DD/MM/YYYY/ HH24:MI:SS'),
+    timestamp: {
+      year: dt.toFormat('YYYY'),
+      month: dt.toFormat('MM'),
+      day: dt.toFormat('DD'),
+      hour: dt.toFormat('HH24'),
+      min: dt.toFormat('MI'),
+    },
   });
 });

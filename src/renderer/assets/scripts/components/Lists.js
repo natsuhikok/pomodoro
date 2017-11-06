@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import countToTime from '../../../../util/countToTime';
+
 const ListItem = ({ timestamp, count, id }) => (
   <li>
     <ul>
-      <li>time: {timestamp}</li>
-      <li>count: {count}</li>
+      <li>time: {`${timestamp.year}/${timestamp.month}/${timestamp.year}/${timestamp.day} ${timestamp.hour}:${timestamp.min}`}</li>
+      <li>count: {countToTime(count)}</li>
     </ul>
   </li>
 );
