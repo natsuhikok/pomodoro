@@ -5,7 +5,7 @@ import countToTime from '../../../../util/countToTime';
 
 const ListItem = ({ dispatch, timestamp, count, id, comments }) => (
   <li>
-    <ul>
+    <ul className="ListItem">
       <li>time: {`${timestamp.year}/${timestamp.month}/${timestamp.year}/${timestamp.day} ${timestamp.hour}:${timestamp.min}`}</li>
       <li>count: {countToTime(count)}</li>
       <li>
@@ -32,7 +32,7 @@ const ListItem = ({ dispatch, timestamp, count, id, comments }) => (
 
 const Lists = ({ dispatch, lists }) => {
   return (
-    <ul>
+    <ul className="List">
       {lists.map(list => (
         <ListItem
           key={list.id}
