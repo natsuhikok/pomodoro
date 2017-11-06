@@ -92,6 +92,10 @@ ipcMain.on('RESET_TIMER', (e) => {
   e.sender.send('ADD_LOG', {
     id: `${dt.toFormat('YYYYMMDDHH24MISS')}${dt.getMilliseconds()}`,
     count: endCount,
+    comments: {
+      memo: '',
+      place: '',
+    },
     timestamp: {
       year: dt.toFormat('YYYY'),
       month: dt.toFormat('MM'),

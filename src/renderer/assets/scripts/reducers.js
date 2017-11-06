@@ -29,6 +29,22 @@ const lists = (state = initialStates.lists, action) => {
   switch (action.type) {
     case 'ADD_LIST':
       return [...state, action.object];
+    case 'UPDATE_MEMO':
+      return state.map((s) => {
+        const ns = s;
+        if (s.id === action.id) {
+          ns.comments.memo = action.memo;
+        }
+        return ns;
+      });
+    case 'UPDATE_PLACE':
+      return state.map((s) => {
+        const ns = s;
+        if (s.id === action.id) {
+          ns.comments.place = action.place;
+        }
+        return ns;
+      });
     default:
       return state;
   }
