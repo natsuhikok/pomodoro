@@ -75,6 +75,6 @@ ipcMain.on('POUSE_TIMER', (e) => {
 ipcMain.on('RESET_TIMER', (e) => {
   sendStatus(e, 'STOP');
   clearInterval(timer.countInterval);
-  timer.count = 0;
+  timer.count += 0;
   e.sender.send('UPDATE_COUNT', timer.count);
 });
