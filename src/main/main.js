@@ -1,5 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 
+require('date-utils');
+
 let mainWindow = null;
 
 const createWindow = () => {
@@ -81,6 +83,15 @@ ipcMain.on('RESET_TIMER', (e) => {
   sendStatus(e, 'STOP');
   // reset count and interval
   clearInterval(timer.countInterval);
-  timer.count += 0;
+  const endCount = timer.count;
+  timer.count = 0;
   e.sender.send('UPDATE_COUNT', timer.count);
+
+  // add log
+  const dt = new Date();
+  e.sender.send('ADD_LOG', {
+    id: `${dt.toFormat('YYYYMMDDHH24MISS')}${dt.getMilliseconds()}`,
+    count: endCount,
+    timestamp: dt.toFormat('DD/MM/YYYY/ HH24:MI:SS'),
+  });
 });

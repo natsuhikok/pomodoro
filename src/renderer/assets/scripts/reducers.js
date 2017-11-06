@@ -5,6 +5,7 @@ const initialStates = {
     count: 0,
     status: 'STOP',
   },
+  lists: [],
 };
 
 const timer = (state = initialStates.timer, action) => {
@@ -24,4 +25,13 @@ const timer = (state = initialStates.timer, action) => {
   }
 };
 
-export default combineReducers({ timer });
+const lists = (state = initialStates.lists, action) => {
+  switch (action.type) {
+    case 'ADD_LIST':
+      return [...state, action.object];
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ timer, lists });
