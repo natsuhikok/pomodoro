@@ -33,6 +33,10 @@ const Timer = ({ dispatch, timer }) => {
         break;
     }
   };
+  const btnSetTimer = (e, time) => {
+    e.preventDefault(e);
+    ipcRenderer.send('SET_TIMER', time);
+  };
   const btnReset = (e) => {
     e.preventDefault();
     ipcRenderer.send('RESET_TIMER');
@@ -44,6 +48,15 @@ const Timer = ({ dispatch, timer }) => {
       </button>
       <button onClick={e => btnReset(e)}>
         reset
+      </button>
+      <button onClick={e => btnSetTimer(e, 25 * 60)}>
+        25min
+      </button>
+      <button onClick={e => btnSetTimer(e, 10 * 60)}>
+        10min
+      </button>
+      <button onClick={e => btnSetTimer(e, 5)}>
+        5s
       </button>
     </div>
   );

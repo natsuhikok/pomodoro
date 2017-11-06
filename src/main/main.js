@@ -73,6 +73,13 @@ ipcMain.on('START_TIMER', (e) => {
   }, 1000);
 });
 
+ipcMain.on('SET_TIMER', (e, time) => {
+  if (timer.status !== 'RUN' || timer.status !== 'OVER') {
+    timer.end = time;
+    e.sender.send('UPDATE_END', timer.end);
+  }
+});
+
 ipcMain.on('POUSE_TIMER', (e) => {
   sendStatus(e, 'POUSE');
   // stop interval

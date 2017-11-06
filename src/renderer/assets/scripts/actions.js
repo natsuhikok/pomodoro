@@ -8,6 +8,11 @@ export const updateStatus = status => ({
   status,
 });
 
+export const updateEnd = end => ({
+  type: 'UPDATE_END',
+  end,
+});
+
 export const addList = object => ({
   type: 'ADD_LIST',
   object,
