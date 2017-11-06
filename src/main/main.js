@@ -47,21 +47,25 @@ const timer = {
   end: 10,
 };
 
+// update status
 const sendStatus = (e, STATUS) => {
   timer.status = STATUS;
   e.sender.send('UPDATE_STATUS', timer.status);
 };
 
 ipcMain.on('START_TIMER', (e) => {
-  clearInterval(timer.countInterval);
   sendStatus(e, 'RUN');
+  // avoid malti interval and start interval
+  clearInterval(timer.countInterval);
   timer.countInterval = setInterval(() => {
+    // change status into OVER once after count reach
     if (
       timer.count >= timer.end
       && timer.status !== 'OVER'
     ) {
       sendStatus(e, 'OVER');
     }
+    // update count
     timer.count += 1;
     e.sender.send('UPDATE_COUNT', timer.count);
   }, 1000);
@@ -69,11 +73,13 @@ ipcMain.on('START_TIMER', (e) => {
 
 ipcMain.on('POUSE_TIMER', (e) => {
   sendStatus(e, 'POUSE');
+  // stop interval
   clearInterval(timer.countInterval);
 });
 
 ipcMain.on('RESET_TIMER', (e) => {
   sendStatus(e, 'STOP');
+  // reset count and interval
   clearInterval(timer.countInterval);
   timer.count += 0;
   e.sender.send('UPDATE_COUNT', timer.count);

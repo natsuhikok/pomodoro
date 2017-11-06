@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Timer = ({ dispatch, timer }) => {
+  // convert counts into min:sec
   const countToTime = (count) => {
     const sec = count % 60;
     const min = Math.floor(count / 60);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 
 const Timer = ({ dispatch, timer }) => {
+  // btn label for main button
   const btnLabel = () => {
     switch (timer.status) {
       case 'RUN':
@@ -15,6 +16,7 @@ const Timer = ({ dispatch, timer }) => {
         return 'start';
     }
   };
+  // main button that transform pouse/finish/start button
   const btnMain = (e) => {
     e.preventDefault();
     switch (timer.status) {
