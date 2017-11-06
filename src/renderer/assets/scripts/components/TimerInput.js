@@ -3,25 +3,42 @@ import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 
 const Timer = ({ dispatch, timer }) => {
-  const btnStart = (e) => {
+  const btnLabel = () => {
+    switch (timer.status) {
+      case 'RUN':
+        return 'pouse';
+      case 'OVER':
+        return 'finish';
+      case 'STOP':
+      case 'POUSE':
+      default:
+        return 'start';
+    }
+  };
+  const btnMain = (e) => {
     e.preventDefault();
-    ipcRenderer.send('START_TIMER');
+    switch (timer.status) {
+      case 'RUN':
+        ipcRenderer.send('POUSE_TIMER');
+        break;
+      case 'OVER':
+        ipcRenderer.send('RESET_TIMER');
+        break;
+      case 'STOP':
+      case 'POUSE':
+      default:
+        ipcRenderer.send('START_TIMER');
+        break;
+    }
   };
   const btnReset = (e) => {
     e.preventDefault();
     ipcRenderer.send('RESET_TIMER');
   };
-  const btnPouse = (e) => {
-    e.preventDefault();
-    ipcRenderer.send('POUSE_TIMER');
-  };
   return (
     <div>
-      <button onClick={e => btnStart(e)}>
-        start
-      </button>
-      <button onClick={e => btnPouse(e)}>
-        pouse
+      <button onClick={e => btnMain(e)}>
+        {btnLabel()}
       </button>
       <button onClick={e => btnReset(e)}>
         reset
