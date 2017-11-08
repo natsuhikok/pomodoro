@@ -1,13 +1,13 @@
 import React from 'react';
 import TimerView from './TimerView';
 import TimerInput from './TimerInput';
-import Lists from './Lists';
+import List from './List';
 
 const App = () => (
   <div>
     <TimerView />
     <TimerInput />
-    <Lists />
+    <List />
   </div>
 );
 

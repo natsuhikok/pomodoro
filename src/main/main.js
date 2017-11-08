@@ -1,6 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-
-require('date-utils');
+import DbManager from '../util/DbManager';
 
 let mainWindow = null;
 
@@ -40,8 +39,11 @@ app.on('activate', () => {
 });
 
 // ******************************************
-// IPC
+// IPCs
 // ******************************************
+const dbPath = './temp/db2';
+const db = new DbManager(dbPath);
+
 const timer = {
   status: 'STOP',
   countInterval: null,
@@ -55,6 +57,9 @@ const sendStatus = (e, STATUS) => {
   e.sender.send('UPDATE_STATUS', timer.status);
 };
 
+// ******************************************
+// START TIMER
+// ******************************************
 ipcMain.on('START_TIMER', (e) => {
   sendStatus(e, 'RUN');
   // avoid malti interval and start interval
@@ -73,6 +78,9 @@ ipcMain.on('START_TIMER', (e) => {
   }, 1000);
 });
 
+// ******************************************
+// SET TIMER
+// ******************************************
 ipcMain.on('SET_TIMER', (e, time) => {
   if (timer.status !== 'RUN' || timer.status !== 'OVER') {
     timer.end = time;
@@ -80,12 +88,40 @@ ipcMain.on('SET_TIMER', (e, time) => {
   }
 });
 
+// ******************************************
+// POUSE TIMER
+// ******************************************
 ipcMain.on('POUSE_TIMER', (e) => {
   sendStatus(e, 'POUSE');
   // stop interval
   clearInterval(timer.countInterval);
 });
 
+// ******************************************
+// UPDATE LIST
+// ******************************************
+ipcMain.once('INITIALZE_UPDATE_LIST', (e) => {
+  db.on('LIST_ITEM_CREATED', () => {
+    db.getAll();
+  });
+  db.on('LIST_ITEM_UPDATED', () => {
+    db.getAll();
+  });
+  db.on('GOT_LIST', (data) => {
+    e.sender.send('UPDATE_LIST', data);
+  });
+  // get all once while ready
+  db.getAll();
+});
+
+ipcMain.on('UPDATE_LIST_ITEM', (e, item) => {
+  console.log(item);
+  db.update(item);
+});
+
+// ******************************************
+// FINISH TIMER
+// ******************************************
 ipcMain.on('RESET_TIMER', (e) => {
   sendStatus(e, 'STOP');
   // reset count and interval
@@ -94,21 +130,6 @@ ipcMain.on('RESET_TIMER', (e) => {
   timer.count = 0;
   e.sender.send('UPDATE_COUNT', timer.count);
 
-  // add log
-  const dt = new Date();
-  e.sender.send('ADD_LOG', {
-    id: `${dt.toFormat('YYYYMMDDHH24MISS')}${dt.getMilliseconds()}`,
-    count: endCount,
-    comments: {
-      memo: '',
-      place: '',
-    },
-    timestamp: {
-      year: dt.toFormat('YYYY'),
-      month: dt.toFormat('MM'),
-      day: dt.toFormat('DD'),
-      hour: dt.toFormat('HH24'),
-      min: dt.toFormat('MI'),
-    },
-  });
+  // update database
+  db.createListItem(endCount);
 });

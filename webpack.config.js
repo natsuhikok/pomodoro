@@ -26,6 +26,7 @@ module.exports = {
     ],
   },
   externals: {
+    pouchdb: 'require("pouchdb")',
     electron: 'require("electron")',
     net: 'require("net")',
     remote: 'require("remote")',

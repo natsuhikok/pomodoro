@@ -13,19 +13,7 @@ export const updateEnd = end => ({
   end,
 });
 
-export const addList = object => ({
-  type: 'ADD_LIST',
+export const updateList = object => ({
+  type: 'UPDATE_LIST',
   object,
-});
-
-export const updateMemo = (memo, id) => ({
-  type: 'UPDATE_MEMO',
-  memo,
-  id,
-});
-
-export const updatePlace = (place, id) => ({
-  type: 'UPDATE_PLACE',
-  place,
-  id,
 });
