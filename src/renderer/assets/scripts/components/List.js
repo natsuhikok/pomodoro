@@ -8,6 +8,17 @@ const ListItem = ({ dispatch, timestamp, count, _id, comments }) => {
     e.preventDefault();
     ipcRenderer.send('DELETE_LIST_ITEM', id);
   };
+  const updateItem = (e, newComment) => {
+    ipcRenderer.send('UPDATE_LIST_ITEM',
+      {
+        _id,
+        docType: 'LIST',
+        count,
+        timestamp,
+        comments: newComment,
+      },
+    );
+  };
   return (
     <li>
       <ul className="ListItem">
@@ -18,18 +29,10 @@ const ListItem = ({ dispatch, timestamp, count, _id, comments }) => {
             type="text"
             value={comments.memo}
             onChange={(e) => {
-              ipcRenderer.send('UPDATE_LIST_ITEM',
-                {
-                  _id,
-                  docType: 'LIST',
-                  count,
-                  timestamp,
-                  comments: {
-                    memo: e.target.value,
-                    place: comments.place,
-                  },
-                },
-              );
+              updateItem(e, {
+                memo: e.target.value,
+                place: comments.place,
+              });
             }}
           />
         </li>
@@ -38,18 +41,10 @@ const ListItem = ({ dispatch, timestamp, count, _id, comments }) => {
             type="text"
             value={comments.place}
             onChange={(e) => {
-              ipcRenderer.send('UPDATE_LIST_ITEM',
-                {
-                  _id: `${_id}`,
-                  docType: 'LIST',
-                  count,
-                  timestamp,
-                  comments: {
-                    memo: comments.memo,
-                    place: e.target.value,
-                  },
-                },
-              );
+              updateItem(e, {
+                memo: comments.memo,
+                place: e.target.value,
+              });
             }}
           />
         </li>
