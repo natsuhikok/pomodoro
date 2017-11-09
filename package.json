@@ -5,6 +5,7 @@
   "scripts": {
     "rebuild": "electron-rebuild",
     "test": "electron-mocha --compilers js:babel-register --recursive $(find test -name '*.spec.js') --verbose || true",
+    "copy:fonts": "copy ./src/renderer/assets/fonts/**/* ./dist/renderer/assets/fonts/",
     "build:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --output-style compressed",
     "watch:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --source-map-embed --watch",
     "build:webpack": "webpack -p",
