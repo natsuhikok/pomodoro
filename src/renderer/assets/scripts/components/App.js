@@ -5,8 +5,10 @@ import List from './List';
 
 const App = () => (
   <div>
-    <TimerView />
-    <TimerInput />
+    <div className="Timer">
+      <TimerView />
+      <TimerInput />
+    </div>
     <List />
   </div>
 );

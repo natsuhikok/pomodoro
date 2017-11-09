@@ -2,11 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import countToTime from '../../../../util/countToTime';
 
-const Timer = ({ dispatch, timer }) => {
+const Timer = ({ timer }) => {
   return (
     <div>
-      <p>Status: {timer.status} / end: {countToTime(timer.end)}</p>
-      <p>Timer: {countToTime(timer.count)}</p>
+      <div>
+        <p>Status: {timer.status} / end: {countToTime(timer.end)}</p>
+      </div>
+      <div className="Timer--count">
+        {countToTime(timer.count)}
+      </div>
     </div>
   );
 };

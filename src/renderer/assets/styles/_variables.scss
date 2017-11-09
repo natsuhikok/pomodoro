@@ -5,12 +5,25 @@ $width: 1200px;
 
 //-------------------------------------
 // Color
-// http://www.materialui.co/colors
+// https://coolors.co/ef6461-e4b363-e8e9eb-e0dfd5-313638
 //-------------------------------------
-$c1: #212121;
-$c2: white;
+$c1: #EF6461;
+$c2: #E4B363;
+$c3: #E8E9EB;
+$c4: #E0DFD5;
+$c5: #313638;
+
+$b: $c5;
+$w: $c3;
 
 //-------------------------------------
 // Fonts
 //-------------------------------------
+@font-face {
+	font-family: 'Saira Semi Condensed';
+	src: url('../fonts/SairaSemiCondensed-SemiBold.ttf');
+}
+
 $font_family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+
+$timer: 'Saira Semi Condensed', sans-serif;
