@@ -48,8 +48,8 @@ export default class DbManager extends EventEmitter {
       item.docType,
       item.timestamp.all,
     ]);
-    this.pouchDB.put(item).then((data) => {
-      this.emit('LIST_ITEM_CREATED', data);
+    this.pouchDB.put(item).then(() => {
+      this.emit('LIST_ITEM_UPDATED');
     }).catch((err) => {
       this.emit('error', err);
     });
@@ -73,8 +73,20 @@ export default class DbManager extends EventEmitter {
       const updateItem = item;
       updateItem._rev = data._rev;
       return this.pouchDB.put(updateItem);
-    }).then((data) => {
-      this.emit('LIST_ITEM_UPDATED', data);
+    }).then(() => {
+      this.emit('LIST_ITEM_UPDATED');
+    }).catch((err) => {
+      this.emit('error', err);
+    });
+  }
+  // ******************************************
+  // DELETE
+  // ******************************************
+  delete(id) {
+    this.pouchDB.get(id).then((data) => {
+      return this.pouchDB.remove(data);
+    }).then(() => {
+      this.emit('LIST_ITEM_UPDATED');
     }).catch((err) => {
       this.emit('error', err);
     });

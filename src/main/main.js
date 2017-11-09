@@ -101,9 +101,6 @@ ipcMain.on('POUSE_TIMER', (e) => {
 // UPDATE LIST
 // ******************************************
 ipcMain.once('INITIALZE_UPDATE_LIST', (e) => {
-  db.on('LIST_ITEM_CREATED', () => {
-    db.getAll();
-  });
   db.on('LIST_ITEM_UPDATED', () => {
     db.getAll();
   });
@@ -114,9 +111,14 @@ ipcMain.once('INITIALZE_UPDATE_LIST', (e) => {
   db.getAll();
 });
 
+// update list item
 ipcMain.on('UPDATE_LIST_ITEM', (e, item) => {
-  console.log(item);
   db.update(item);
+});
+
+// delete list item
+ipcMain.on('DELETE_LIST_ITEM', (e, id) => {
+  db.delete(id);
 });
 
 // ******************************************
