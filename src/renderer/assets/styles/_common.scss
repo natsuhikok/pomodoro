@@ -26,19 +26,30 @@ html {
 }
 .btn-main {
   @extend %btn-reset;
-  display: inline-block;
-  border: 2px solid $c2;
-  color: $c2;
-  font-size: 20px;
+  display: block;
+  border: 2px solid $c1;
+  color: $c4;
+  background-color: $c1;
+  font-size: 18px;
   border-radius: 4px;
-  padding: 4px 0;
-  width: 100px;
+  padding: 10px 0;
+  width: 86px;
+  margin-bottom: 4px;
   &:hover {
-    background-color: $c2;
-    color: $c4;
+    border: 2px solid $c1;
+    color: $c1;
+    background-color: $c4;
   }
 }
-
+.btn-link {
+  @extend %btn-reset;
+  color: $c2;
+  text-decoration: underline;
+  font-size: 14px;
+  &:hover {
+    color: $c5;
+  }
+}
 .btn-time {
   @extend %btn-reset;
   font-size: 12px;

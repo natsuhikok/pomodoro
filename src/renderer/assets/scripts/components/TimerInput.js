@@ -43,15 +43,19 @@ const Timer = ({ dispatch, timer }) => {
   };
   return (
     <div>
-      <button
-        onClick={e => btnMain(e)}
-        className="btn-main"
-      >
-        {btnLabel()}
-      </button>
-      <button className="btn-main" onClick={e => btnReset(e)}>
-        reset
-      </button>
+      <div className="Timer--btnMainWrapper">
+        <button
+          onClick={e => btnMain(e)}
+          className="btn-main"
+        >
+          {btnLabel()}
+        </button>
+      </div>
+      <div className="Timer--resetWrapper">
+        <button className="btn-link" onClick={e => btnReset(e)}>
+          reset
+        </button>
+      </div>
       <div className="Timer--btnTimeWrapper">
         <button className="btn-time" onClick={e => btnSetTimer(e, 25 * 60)}>
           25
@@ -59,9 +63,6 @@ const Timer = ({ dispatch, timer }) => {
         <button className="btn-time" onClick={e => btnSetTimer(e, 10 * 60)}>
           10
         </button>
-        {/* <button className="btn-main" onClick={e => btnSetTimer(e, 5)}>
-          00:05
-        </button> */}
       </div>
     </div>
   );
