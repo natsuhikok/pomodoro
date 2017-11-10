@@ -7,13 +7,13 @@ const Timer = ({ dispatch, timer }) => {
   const btnLabel = () => {
     switch (timer.status) {
       case 'RUN':
-        return 'pouse';
+        return 'POUSE';
       case 'OVER':
-        return 'finish';
+        return 'FINISH';
       case 'STOP':
       case 'POUSE':
       default:
-        return 'start';
+        return 'START';
     }
   };
   // main button that transform pouse/finish/start button
@@ -43,21 +43,26 @@ const Timer = ({ dispatch, timer }) => {
   };
   return (
     <div>
-      <button onClick={e => btnMain(e)}>
+      <button
+        onClick={e => btnMain(e)}
+        className="btn-main"
+      >
         {btnLabel()}
       </button>
-      <button onClick={e => btnReset(e)}>
+      <button className="btn-main" onClick={e => btnReset(e)}>
         reset
       </button>
-      <button onClick={e => btnSetTimer(e, 25 * 60)}>
-        25min
-      </button>
-      <button onClick={e => btnSetTimer(e, 10 * 60)}>
-        10min
-      </button>
-      <button onClick={e => btnSetTimer(e, 5)}>
-        5s
-      </button>
+      <div className="Timer--btnTimeWrapper">
+        <button className="btn-time" onClick={e => btnSetTimer(e, 25 * 60)}>
+          25
+        </button>
+        <button className="btn-time" onClick={e => btnSetTimer(e, 10 * 60)}>
+          10
+        </button>
+        {/* <button className="btn-main" onClick={e => btnSetTimer(e, 5)}>
+          00:05
+        </button> */}
+      </div>
     </div>
   );
 };

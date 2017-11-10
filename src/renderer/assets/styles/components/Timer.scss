@@ -1,20 +1,35 @@
 .Timer {
   background-color: $c4;
   padding: 1px 0;
-  position: fixed;
-  top: 0;
   width: 100%;
   border-bottom: 1px solid $c5;
+  height: $h_header;
   &--count {
-    color: $b;
-    font-family: $timer;
-    position: absolute;
-    width: 240px;
     text-align: center;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: 0;
+    display: block;
+    color: $b;
+    padding: 4px 0 4px 64px;
     font-size: 70px;
+    &--end {
+      display: inline-block;
+      padding: 0 0 0 4px;
+      font-size: 22px;
+      color: $c1;
+      &::before {
+        color: $c5;
+        content: 'End at';
+        display: block;
+        font-size: 14px;
+        margin-left: -12px;
+      }
+    }
+  }
+  &--btnMainWrapper {
+    text-align: center;
+  }
+  &--btnTimeWrapper {
+    position: absolute;
+    top: 14px;
+    right: 10px;
   }
 }

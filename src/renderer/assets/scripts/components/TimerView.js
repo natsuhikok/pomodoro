@@ -4,13 +4,11 @@ import countToTime from '../../../../util/countToTime';
 
 const Timer = ({ timer }) => {
   return (
-    <div>
-      <div>
-        <p>Status: {timer.status} / end: {countToTime(timer.end)}</p>
-      </div>
-      <div className="Timer--count">
-        {countToTime(timer.count)}
-      </div>
+    <div className="Timer--count">
+      {countToTime(timer.count)}
+      <span className="Timer--count--end">
+        {countToTime(timer.end)}
+      </span>
     </div>
   );
 };

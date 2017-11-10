@@ -6,13 +6,14 @@ let mainWindow = null;
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 440,
+    height: 700,
+    resizable: false,
   });
   mainWindow.loadURL(`file://${__dirname}/renderer/index.html`);
 
   // Open the DevTools if you want.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
