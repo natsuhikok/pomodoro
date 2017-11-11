@@ -49,7 +49,7 @@ const timer = {
   status: 'STOP',
   countInterval: null,
   count: 0,
-  end: 10,
+  end: 25 * 60,
 };
 
 // update status

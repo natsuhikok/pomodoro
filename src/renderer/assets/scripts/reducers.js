@@ -4,7 +4,7 @@ const initialStates = {
   timer: {
     count: 0,
     status: 'STOP',
-    end: 10,
+    end: 25 * 60,
   },
   lists: [],
 };
