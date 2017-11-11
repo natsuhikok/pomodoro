@@ -1,18 +1,50 @@
 .List {
   list-style: none;
   padding: 0;
+  margin: 0;
   width: 100%;
   height: $h_main;
   overflow-x: scroll;
   overflow-y: scroll;
 }
 .ListItem {
+  width: 100%;
   list-style: none;
   margin: 0;
-  padding: 10px 0;
-  border-bottom: 1px solid black;
+  padding: 10px 4px 10px 2px;
+  border-bottom: 1px solid $c4;
+  position: relative;
   li {
     display: inline-block;
     padding-left: 5px;
+  }
+  &--time {
+    color: $c1;
+    font-size: 12px;
+    margin-bottom: 4px;
+    margin-right: 120px;
+  }
+  &--count {
+    position: absolute;
+    top: 24px;
+    left: 2px;
+    font-size: 18px;
+    color: $c4;
+  }
+  &--memo,
+  &--place {
+    font-size: 12px;
+    color: $c4;
+  }
+  &--memo {
+    margin-left: 64px;
+  }
+  &--delete {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    & > button {
+      font-size: 12px !important;
+    }
   }
 }

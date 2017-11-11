@@ -21,9 +21,17 @@ const ListItem = ({ timestamp, count, _id, comments }) => {
   return (
     <li>
       <ul className="ListItem">
-        <li>time: {`${timestamp.year}/${timestamp.month}/${timestamp.year}/${timestamp.day} ${timestamp.hour}:${timestamp.min}`}</li>
-        <li>count: {countToTime(count)}</li>
-        <li>
+        <li className="ListItem--time">{`${timestamp.year}/${timestamp.month}/${timestamp.year}/${timestamp.day} ${timestamp.hour}:${timestamp.min}`}</li>
+        <li className="ListItem--delete">
+          <button
+            className="btn-link"
+            onClick={e => deleteItem(e, _id)}
+          >
+            delete
+          </button>
+        </li>
+        <li className="ListItem--count"> {countToTime(count)}</li>
+        <li className="ListItem--memo">
           memo: <input
             type="text"
             value={comments.memo}
@@ -35,7 +43,7 @@ const ListItem = ({ timestamp, count, _id, comments }) => {
             }}
           />
         </li>
-        <li>
+        <li className="ListItem--place">
           place: <input
             type="text"
             value={comments.place}
@@ -47,9 +55,6 @@ const ListItem = ({ timestamp, count, _id, comments }) => {
             }}
           />
         </li>
-        <button onClick={e => deleteItem(e, _id)}>
-          delete
-        </button>
       </ul>
     </li>
   );
