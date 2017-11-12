@@ -6,6 +6,7 @@
     "rebuild": "electron-rebuild",
     "test": "electron-mocha --compilers js:babel-register --recursive $(find test -name '*.spec.js') --verbose || true",
     "copy:fonts": "copy ./src/renderer/assets/fonts/**/* ./dist/renderer/assets/fonts/",
+    "copy:modules": "gulp copy:modules",
     "build:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --output-style compressed",
     "watch:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --source-map-embed --watch",
     "devbuild:webpack": "webpack",
@@ -20,7 +21,7 @@
     "dev:watch": "npm-run-all -p watch:* server",
     "dev": "npm-run-all -s dev:build dev:watch",
     "start": "npm-run-all dev",
-    "build": "npm-run-all -s clean build:* copy:fonts create:packageJson release:osx",
+    "build": "npm-run-all -s clean build:* copy:fonts create:packageJson copy:modules release:osx",
     "clean": "rimraf ./dist"
   },
   "keywords": [
@@ -31,7 +32,7 @@
     "electron": "1.6.2",
     "node-notifier": "^5.1.2",
     "normalize.css": "^7.0.0",
-    "pouchdb": "^6.3.4",
+    "pouchdb": "6.2.0",
     "pouchdb-collate": "^6.3.4",
     "pouchdb-find": "^6.3.4",
     "react": "^15.4.2",
@@ -46,6 +47,7 @@
     "babel-preset-react": "^6.23.0",
     "chai": "^4.1.2",
     "copy": "^0.3.0",
+    "copy-dir": "^0.3.0",
     "electron-connect": "^0.6.1",
     "electron-mocha": "^4.0.3",
     "electron-packager": "^8.7.0",
