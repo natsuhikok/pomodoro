@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
+import fs from 'fs';
 
 const pouchCollate = require('pouchdb-collate');
 require('date-utils');
@@ -11,6 +12,13 @@ export default class DbManager extends EventEmitter {
   constructor(path) {
     super();
     this.path = path;
+    // create DB directory
+    try {
+      fs.mkdirSync(this.path);
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+    }
+    // initialize db
     this.pouchDB = new PouchDB(path);
     // get indexable string for id
     this.getId = (a => pouchCollate.toIndexableString(a));

@@ -3,10 +3,6 @@ import DbManager from '../util/DbManager';
 
 let mainWindow = null;
 
-if (process.env.NODE_ENV !== 'production') {
-    console.log('this is not production');
-}
-
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -18,7 +14,6 @@ const createWindow = () => {
 
   // Open the DevTools if you want.
   // mainWindow.webContents.openDevTools();
-
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -46,7 +41,13 @@ app.on('activate', () => {
 // ******************************************
 // IPCs
 // ******************************************
-const dbPath = './temp/db2';
+let dbPath;
+if (process.env.NODE_ENV === 'production') {
+  dbPath = `${app.getPath('appData')}/hikonaz.pomodoro/`;
+} else {
+  dbPath = './temp/';
+}
+
 const db = new DbManager(dbPath);
 
 const timer = {
