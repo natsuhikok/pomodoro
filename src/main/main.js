@@ -2,6 +2,10 @@ import { app, BrowserWindow } from 'electron';
 
 let mainWindow = null;
 
+if (process.env.NODE_ENV !== 'production') {
+    console.log('this is not production');
+}
+
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
