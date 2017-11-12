@@ -8,6 +8,7 @@
     "copy:fonts": "copy ./src/renderer/assets/fonts/**/* ./dist/renderer/assets/fonts/",
     "build:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --output-style compressed",
     "watch:scss": "node-sass ./src/renderer/assets/styles/style.scss ./dist/renderer/assets/styles/style.css --source-map-embed --watch",
+    "devbuild:webpack": "webpack",
     "build:webpack": "webpack -p",
     "build:template": "pug src/renderer/**.pug --out ./dist/renderer --pretty",
     "create:packageJson": "gulp create:packageJson",
@@ -15,11 +16,11 @@
     "watch:webpack": "webpack --watch",
     "watch:template": "pug src/renderer/**.pug --out ./dist/renderer --pretty --watch",
     "server": "gulp server",
-    "dev:build": "npm-run-all -s clean build:* copy:fonts create:packageJson",
+    "dev:build": "npm-run-all -s clean build:scss build:template devbuild:webpack copy:fonts create:packageJson",
     "dev:watch": "npm-run-all -p watch:* server",
     "dev": "npm-run-all -s dev:build dev:watch",
     "start": "npm-run-all dev",
-    "build": "npm-run-all -s clean build:* create:packageJson release:osx",
+    "build": "npm-run-all -s clean build:* copy:fonts create:packageJson release:osx",
     "clean": "rimraf ./dist"
   },
   "keywords": [
