@@ -1,12 +1,21 @@
-## How to create new project with
+This is simple pomodoro app wip.
 
-```
-# clone
-$ git clone git@github.com:natsuhikok/electron-starter.git hogehoge
+## as Application
+This is simple desctop pomodoro app for mac os.
 
-# change remote
-$ git remote set-url origin git@github.com:foo/hogehoge.git
+### features
+* time logging with some comments
+* 10min and 25min toggle timer
 
-# add original remote repo as upstrem [optional]
-$ git remote add upstream git@github.com:natsuhikok/electron-starter.git
-```
+### working on
+* [ ] stats
+* [ ] today, week and etc view
+
+## as Development
+about development.
+
+### tool stack
+* pouchDB
+* react/redux
+* electron
+* scss
