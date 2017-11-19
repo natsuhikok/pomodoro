@@ -13,7 +13,9 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${__dirname}/renderer/index.html`);
 
   // Open the DevTools if you want.
-  mainWindow.webContents.openDevTools();
+  if (process.env.NODE_ENV !== 'production') {
+    mainWindow.webContents.openDevTools();
+  }
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     mainWindow = null;
