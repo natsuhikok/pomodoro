@@ -10,6 +10,7 @@ This is simple desctop pomodoro app for mac os.
 ### working on
 * [ ] stats
 * [ ] today, week and etc view
+* [ ] icon
 
 ## as Development
 about development.
