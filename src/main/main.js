@@ -53,8 +53,10 @@ const db = new DbManager(dbPath);
 const timer = {
   status: 'STOP',
   countInterval: null,
+  counted: 0,
   count: 0,
   end: 25 * 60,
+  startTime: null,
 };
 
 // update status
@@ -70,6 +72,7 @@ ipcMain.on('START_TIMER', (e) => {
   sendStatus(e, 'RUN');
   // avoid malti interval and start interval
   clearInterval(timer.countInterval);
+  timer.startTime = new Date().getTime();
   timer.countInterval = setInterval(() => {
     // change status into OVER once after count reach
     if (
@@ -79,7 +82,10 @@ ipcMain.on('START_TIMER', (e) => {
       sendStatus(e, 'OVER');
     }
     // update count
-    timer.count += 1;
+    const diffTime = Math.round(
+      (new Date().getTime() - timer.startTime) / 1000,
+    );
+    timer.count = diffTime + timer.counted;
     e.sender.send('UPDATE_COUNT', timer.count);
   }, 1000);
 });
@@ -99,10 +105,11 @@ ipcMain.on('POUSE_TIMER', (e) => {
   sendStatus(e, 'POUSE');
   // stop interval
   clearInterval(timer.countInterval);
+  timer.counted = timer.count;
 });
 
 // ******************************************
-// FINISH TIMER
+// RESET TIMER include finish
 // ******************************************
 ipcMain.on('RESET_TIMER', (e) => {
   sendStatus(e, 'STOP');
@@ -111,7 +118,9 @@ ipcMain.on('RESET_TIMER', (e) => {
   // update database
   db.createListItem(timer.count);
   // reset count
-  e.sender.send('UPDATE_COUNT', timer.count = 0);
+  e.sender.send('UPDATE_COUNT', 0);
+  // reset counted
+  timer.counted = 0;
 });
 
 // ******************************************
