@@ -13,7 +13,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${__dirname}/renderer/index.html`);
 
   // Open the DevTools if you want.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -88,10 +88,8 @@ ipcMain.on('START_TIMER', (e) => {
 // SET TIMER
 // ******************************************
 ipcMain.on('SET_TIMER', (e, time) => {
-  if (timer.status !== 'RUN' || timer.status !== 'OVER') {
-    timer.end = time;
-    e.sender.send('UPDATE_END', timer.end);
-  }
+  timer.end = time;
+  e.sender.send('UPDATE_END', timer.end);
 });
 
 // ******************************************
@@ -101,6 +99,19 @@ ipcMain.on('POUSE_TIMER', (e) => {
   sendStatus(e, 'POUSE');
   // stop interval
   clearInterval(timer.countInterval);
+});
+
+// ******************************************
+// FINISH TIMER
+// ******************************************
+ipcMain.on('RESET_TIMER', (e) => {
+  sendStatus(e, 'STOP');
+  // stop interval
+  clearInterval(timer.countInterval);
+  // update database
+  db.createListItem(timer.count);
+  // reset count
+  e.sender.send('UPDATE_COUNT', timer.count = 0);
 });
 
 // ******************************************
@@ -125,19 +136,4 @@ ipcMain.on('UPDATE_LIST_ITEM', (e, item) => {
 // delete list item
 ipcMain.on('DELETE_LIST_ITEM', (e, id) => {
   db.delete(id);
-});
-
-// ******************************************
-// FINISH TIMER
-// ******************************************
-ipcMain.on('RESET_TIMER', (e) => {
-  sendStatus(e, 'STOP');
-  // reset count and interval
-  clearInterval(timer.countInterval);
-  const endCount = timer.count;
-  timer.count = 0;
-  e.sender.send('UPDATE_COUNT', timer.count);
-
-  // update database
-  db.createListItem(endCount);
 });
