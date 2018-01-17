@@ -123,6 +123,7 @@ ipcMain.on('RESET_TIMER', (e) => {
   e.sender.send('UPDATE_COUNT', 0);
   // reset counted
   timer.counted = 0;
+  timer.count = 0;
 });
 
 // ******************************************
