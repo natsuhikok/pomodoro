@@ -4,10 +4,14 @@ import DbManager from '../util/DbManager';
 let mainWindow = null;
 
 const createWindow = () => {
+  let windowHeight = 440 + 22; // 22 is headersize
+  if (process.env.NODE_ENV !== 'production') {
+    windowHeight = 800;
+  }
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 440,
-    height: 700,
+    height: windowHeight,
     resizable: false,
   });
   mainWindow.loadURL(`file://${__dirname}/renderer/index.html`);

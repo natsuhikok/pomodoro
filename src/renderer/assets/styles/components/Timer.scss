@@ -1,46 +1,23 @@
 .Timer {
-  background-color: $c4;
-  padding: 1px 0;
+  height: 160px;
   width: 100%;
-  border-bottom: 1px solid $c5;
-  height: $h_header;
+  background-color: $c1;
   &--count {
+    font-size: 80px;
     text-align: center;
-    display: block;
-    color: $b;
-    padding: 4px 0 4px 64px;
-    font-size: 70px;
-    &--end {
-      display: inline-block;
-      padding: 0 0 0 10px;
-      font-size: 22px;
-      color: $c1;
-      &::before {
-        color: $c5;
-        content: 'End at';
-        display: block;
-        font-size: 14px;
-        margin-left: -12px;
-      }
+    color: $c2;
+    font-weight: 100;
+    line-height: 80px;
+    margin: 0;
+    padding-top: 10px;
+  }
+  &--cap {
+    color: $c2;
+    font-size: 18px;
+    font-family: RobotoMonoLight;
+    text-align: center;
+    span {
+      padding: 0 54px;
     }
-  }
-  &--btnMainWrapper {
-    position: absolute;
-    top: 30px;
-    left: 10px;
-  }
-  &--btnTimeWrapper {
-    position: absolute;
-    top: 14px;
-    right: 10px;
-  }
-  &--resetWrapper {
-    position: absolute;
-    // top: 62px;
-    // left: 30px;
-    // top: 82px;
-    top: 0;
-    // left: 190px;
-    left: 6px;
   }
 }

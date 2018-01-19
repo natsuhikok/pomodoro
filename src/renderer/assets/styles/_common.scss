@@ -14,53 +14,7 @@ html {
       -ms-box-sizing: border-box;
           box-sizing: border-box;
 }
-
-%btn-reset {
-  background: none;
-  border: 0;
-  transition: 0.1s;
-  font-family: $font_family;
-  &:focus {
-    outline: 0;
-  }
-}
-.btn-main {
-  @extend %btn-reset;
-  display: block;
-  border: 2px solid $c1;
-  color: $c4;
-  background-color: $c1;
-  font-size: 18px;
-  border-radius: 4px;
-  padding: 10px 0;
-  width: 86px;
-  margin-bottom: 4px;
-  &:hover {
-    border: 2px solid $c1;
-    color: $c1;
-    background-color: $c4;
-  }
-}
-.btn-link {
-  @extend %btn-reset;
-  color: $c2;
-  text-decoration: underline;
-  font-size: 14px;
-  &:hover {
-    color: $c5;
-  }
-}
-.btn-time {
-  @extend %btn-reset;
-  font-size: 12px;
-  border: 2px solid $c1;
-  border-radius: 200%;
-  height: 30px; width: 30px;
-  color: $c1;
-  display: block;
-  margin-bottom: 4px;
-  &:hover {
-    background-color: $c1;
-    color: $c4;
-  }
+body {
+  height: 100vh;
+  overflow: hidden;
 }

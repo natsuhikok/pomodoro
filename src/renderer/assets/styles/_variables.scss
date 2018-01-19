@@ -7,14 +7,13 @@ $width: 1200px;
 // Color
 // https://coolors.co/ef6461-e4b363-e8e9eb-e0dfd5-313638
 //-------------------------------------
-$c1: #EF6461;
-$c2: #E4B363;
-$c3: #E8E9EB;
-$c4: #E0DFD5;
-$c5: #313638;
+$c1: #191919;
+$c2: #fff;
+$c3: #3F6FFF;
+$c4: #A7A696;
 
-$b: $c5;
-$w: $c3;
+$b: $c1;
+$w: $c2;
 
 //-------------------------------------
 // Fonts
@@ -22,6 +21,10 @@ $w: $c3;
 @font-face {
 	font-family: 'RobotoMono';
 	src: url('../fonts/RobotoMono-Medium.ttf');
+}
+@font-face {
+	font-family: 'RobotoMonoLight';
+	src: url('../fonts/RobotoMono-Light.ttf');
 }
 
 $font_family:'RobotoMono', Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
