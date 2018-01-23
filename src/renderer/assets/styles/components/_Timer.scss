@@ -8,7 +8,7 @@
     color: $c2;
     font-weight: 100;
     line-height: 80px;
-    margin: 0;
+    margin: 0 0 0 -6px;
     padding-top: 10px;
   }
   &--cap {
@@ -19,5 +19,14 @@
     span {
       padding: 0 54px;
     }
+  }
+  &--btnMainWrapper {
+    width: 100%;
+    margin-top: -10px;
+  }
+  &--resetWrapper {
+    position: absolute;
+    top: 52px;
+    left: 68px;
   }
 }

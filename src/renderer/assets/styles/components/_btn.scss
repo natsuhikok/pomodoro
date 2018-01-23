@@ -1,0 +1,79 @@
+%btn-cercle {
+  background: none;
+  border-radius: 100%;
+  text-align: center;
+  display: block;
+  transition: 0.1s;
+  &:focus {
+    outline: 0;
+  }
+  i {
+    @extend .fa;
+  }
+}
+%btn-main {
+  @extend %btn-cercle;
+  border: 2px solid $c3;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto;
+}
+
+@mixin btn-main($color) {
+  @extend %btn-main;
+  border-color: $color;
+  &:hover {
+    border-color: lighten($color, 10%);
+    i {
+      color: lighten($color, 10%);
+    }
+  }
+  i {
+    color: $color;
+  }
+}
+
+.btn-start {
+  @include btn-main($c3);
+  i {
+    @extend .fa-play;
+    font-size: 24px;
+    margin-left: 5px;
+  }
+}
+.btn-pouse {
+  @include btn-main($c5);
+  i {
+    @extend .fa-pause;
+    font-size: 24px;
+    margin-left: 0;
+  }
+}
+.btn-finish {
+  @include btn-main($c6);
+  i {
+    @extend .fa-bolt;
+    font-size: 24px;
+    margin-left: 0;
+  }
+}
+.btn-reset {
+  @extend %btn-cercle;
+  background: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $c4;
+  &:hover {
+    border: 2px solid white;
+    i {
+      color: white;
+    }
+  }
+  i {
+    @extend .fa-undo;
+    color: $c4;
+    font-size: 11px;
+    margin-left: -3px;
+    margin-top: 1px;
+  }
+}

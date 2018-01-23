@@ -30,6 +30,7 @@
   "dependencies": {
     "date-utils": "^1.2.21",
     "electron": "1.6.2",
+    "font-awesome": "^4.7.0",
     "node-notifier": "^5.1.2",
     "normalize.css": "^7.0.0",
     "pouchdb": "6.2.0",

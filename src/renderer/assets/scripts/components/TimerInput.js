@@ -4,16 +4,16 @@ import { ipcRenderer } from 'electron';
 
 const Timer = ({ dispatch, timer }) => {
   // btn label for main button
-  const btnLabel = () => {
+  const btnClass = () => {
     switch (timer.status) {
       case 'RUN':
-        return 'POUSE';
+        return 'btn-pouse';
       case 'OVER':
-        return 'FINISH';
+        return 'btn-finish';
       case 'STOP':
       case 'POUSE':
       default:
-        return 'START';
+        return 'btn-start';
     }
   };
   // main button that transform pouse/finish/start button
@@ -33,10 +33,6 @@ const Timer = ({ dispatch, timer }) => {
         break;
     }
   };
-  const btnSetTimer = (e, time) => {
-    e.preventDefault(e);
-    ipcRenderer.send('SET_TIMER', time);
-  };
   const btnReset = (e) => {
     e.preventDefault();
     ipcRenderer.send('RESET_TIMER');
@@ -46,22 +42,14 @@ const Timer = ({ dispatch, timer }) => {
       <div className="Timer--btnMainWrapper">
         <button
           onClick={e => btnMain(e)}
-          className="btn-main"
+          className={btnClass()}
         >
-          {btnLabel()}
+          <i />
         </button>
       </div>
       <div className="Timer--resetWrapper">
-        <button className="btn-link" onClick={e => btnReset(e)}>
-          reset
-        </button>
-      </div>
-      <div className="Timer--btnTimeWrapper">
-        <button className="btn-time" onClick={e => btnSetTimer(e, 25 * 60)}>
-          25
-        </button>
-        <button className="btn-time" onClick={e => btnSetTimer(e, 10 * 60)}>
-          10
+        <button className="btn-reset" onClick={e => btnReset(e)}>
+          <i />
         </button>
       </div>
     </div>
